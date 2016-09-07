@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cache</title>
+	<style>
+		body {
+			font-family: Consolas;
+		}
+
+		button {
+			display: inline-block;
+			background: #eff2f4;
+			border: 1px solid #ccc;
+			border-radius: 2px;
+		    color: #666;
+			padding: 5px;
+			cursor: pointer;
+		}
+
+		input {
+			padding: 5px;
+			border-radius: 2px;
+			border: 1px solid #ccc;
+		}
+
+		#cache {
+			width: 1000px;
+			height: 220px;
+			margin: 200px auto;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			font-size: 10px;
+		}
+
+		.entries li, .removed li {
+			display: inline-block;
+			margin-right: 30px;
+			background-color: #ccc;
+			width: 50px;
+			text-align: center;
+			height: 50px;
+			line-height: 50px;
+			position: relative;
+			color: #42b983;
+			border-radius: 3px;
+			/*color: #2973b7;*/
+			/*下面好多很乱哦*/
+			word-wrap: break-word;
+			white-space: pre-wrap;
+		}
+
+		.entries li:before, .entries li:after {
+			color: #ccc;
+			content: '';
+			display: inline-block;
+			position: absolute;
+			width: 30px;
+			border-top: 1px solid;
+		}
+
+		.entries li:before {
+			top: 22px;
+			left: -30px;
+		}
+
+		.entries li:after {
+			top: 28px;
+			left: 50px;
+		}
+
+		.entries li:first-child:before, .entries li:last-child:after {
+			display: none;
+		}
+
+		.text {
+			color: #e96900;
+		}
+
+		.powered {
+			width: 180px;
+			margin: 0 auto;
+			font-size: 12px;
+			color: #666;
+		}
+	</style>
+</head>
+<body>
+	<div id="cache" v-if="canShow">
+		<p>
+			<label>缓存大小: </label><span class="text">{{ limit }}</span>&nbsp;
+			<label>剩余: </label><span class="text">{{ remain }}</span>&nbsp;
+			<button @click="put">塞入缓存</button>
+		</p>
+		<p>
+			<input type="text" placeholder="请输入框架名" v-model="name">
+			<button @click="get">缓存里查询</button>
+		</p>
+		<h4>缓存双向链表</h4>
+		<ul class="entries">
+			<li v-for="entry in entries | getEntries">{{ entry }}</li>
+		</ul>
+		<h4>被删除的<em>entry</em></h4>
+		<ul class="removed">
+			<li v-for="entry in removed | getRemoved">{{ entry }}</li>
+		</ul>
+		<div>
+			<p>操作: {{ op | semantic }}</p>
+		</div>
+	</div>
+
+	<p class="powered">Powered by Vue.js</p>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/lru.js"></script>
+<script src="js/cache.js"></script>
+</html>
