@@ -95,7 +95,7 @@
 	</style>
 </head>
 <body>
-	<div id="cache" v-if="canShow">
+	<div id="cache">
 		<p>
 			<label>缓存大小: </label><span class="text">{{ limit }}</span>&nbsp;
 			<label>剩余: </label><span class="text">{{ remain }}</span>&nbsp;
@@ -116,9 +116,8 @@
 		<div>
 			<p>操作: {{{ op | semantic }}}</p>
 		</div>
+		<p class="powered">Powered by <span class="vue">Vue.js</span></p>
 	</div>
-
-	<p class="powered">Powered by <span class="vue">Vue.js</span></p>
 </body>
 <script src="js/vue.js"></script>
 <script src="js/lru.js"></script>
