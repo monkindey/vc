@@ -32,12 +32,21 @@
 	});
 
 	Vue.filter('semantic', function() {
+		var html;
 		if (this.op === 'put') {
-			return '将' + this.entry + '塞入到缓存里';
+			html = '<span>将<em class="text">' + this.entry + '</em>塞入到缓存里</span>';
+			if(this.removed.length > 0) {
+				html += ', 并把<em class="text">' + this.removed[this.removed.length - 1].key + '</em>踢出去';
+			}
+			return html;
 		} else if (this.op === 'get') {
-			return '在缓存里查找' + this.entry + ', 并且将它放到队尾';
+			if(!this.entry) {
+				return '该框架不存在此缓存里';
+			}else {
+				return '<span>在缓存里查找<em class="text">' + this.entry + '</em>, 并且将它放到队尾</span>';
+			}
 		}else {
-			return '暂无操作'
+			return '暂无操作';
 		}
 	})
 
@@ -89,10 +98,10 @@
 			},
 			get: function() {
 				if(this.name.trim() === '') return;
-				displayCache.get(this.name);
+				var ret = displayCache.get(this.name);
 				this.entries = Object.assign({}, displayCache);
 				this.op = 'get';
-				this.entry = this.name;
+				this.entry = ret ? this.name : undefined;
 				this.name = '';
 			}
 		}
