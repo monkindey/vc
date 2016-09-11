@@ -24,6 +24,10 @@
 			border: 1px solid #ccc;
 		}
 
+		[v-cloak] {
+			display: none;
+		}
+
 		#cache {
 			width: 1000px;
 			height: 220px;
@@ -95,7 +99,7 @@
 	</style>
 </head>
 <body>
-	<div id="cache">
+	<div id="cache" v-cloak>
 		<p>
 			<label>缓存大小: </label><span class="text">{{ limit }}</span>&nbsp;
 			<label>剩余: </label><span class="text">{{ remain }}</span>&nbsp;

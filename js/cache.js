@@ -78,7 +78,7 @@
 		},
 		events: {
 			'hook:compiled': function() {
-				this.canShow = true;
+				alert(31313);
 			}
 		},
 		methods: {
