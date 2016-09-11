@@ -76,11 +76,6 @@
 				return this.limit - this.entries.size;
 			}
 		},
-		events: {
-			'hook:compiled': function() {
-				alert(31313);
-			}
-		},
 		methods: {
 			put: function() {
 				var removed;
