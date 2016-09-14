@@ -96,6 +96,21 @@
 			color: #42b983;
 		}
 
+		.fade-transition {
+			transition: all 1s;
+		}
+
+		li.fade-leave, li.fade-enter {
+			opacity: 0;
+		}
+
+/*		li.fade-leave:before, 
+		li.fade-leave:after,
+		li.fade-enter:before, 
+		li.fade-enter:after {
+			width: 0;
+		}
+*/
 	</style>
 </head>
 <body>
@@ -111,11 +126,11 @@
 		</p>
 		<h4>缓存双向链表</h4>
 		<ul class="entries">
-			<li v-for="entry in entries | getEntries">{{ entry }}</li>
+			<li transition="fade" v-for="entry in entries | getEntries">{{ entry }}</li>
 		</ul>
 		<h4>被删除的<em>entry</em></h4>
 		<ul class="removed">
-			<li v-for="entry in removed | getRemoved">{{ entry }}</li>
+			<li transition="fade" v-for="entry in removed | getRemoved">{{ entry }}</li>
 		</ul>
 		<div>
 			<p>操作: {{{ op | semantic }}}</p>
