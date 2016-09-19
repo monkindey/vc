@@ -1,5 +1,4 @@
-### Vue缓存机制的可视化
-[Vue缓存机制页面](http://www.monkindey.xyz/vc/)
+#### [Vue缓存机制的可视化]((http://www.monkindey.xyz/vc/))
 
 1. **塞入缓存**操作
 将一些写死的框架及其对应的`star`的数据一个个放进缓存中；
